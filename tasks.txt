@@ -1,0 +1,62 @@
+Contexte du projet
+Vous êtes développeur IA junior au sein d’un laboratoire biomédical. Votre mission consiste à concevoir un système intelligent capable d’analyser des données cliniques (Glucose, Blood Pressure, Skin Thickness, Insulin, BMI, Diabetes Pedigree Function et Age) afin d’identifier des profils de patients et d’estimer leur risque de diabète.
+
+Le projet comprend deux volets : clustering non supervisé pour identifier des profils similaires, puis classification supervisée à partir des groupes obtenus.
+
+À partir d’un jeu de données historiques comprenant les résultats de tests déjà réalisés par des patients au sein du laboratoire, vous serez chargé(e) de :
+
+Étape 1 — Chargement et Analyse exploratoire des données (EDA)
+Importer les données à l’aide de pandas.
+Comprendre la structure générale du jeu de données (types, dimensions, aperçus).
+Identifier les valeurs manquantes et les doublons.
+Analyser la distribution des variables numériques.
+
+Étape 2 — Prétraitement des données - Gestion des valeurs manquantes et aberrantes
+Identifier et traiter les valeurs manquantes dans le jeu de données si elles existent.
+Utiliser des techniques statistiques (ex. : boîte à moustaches, z-score, IQR) pour détecter les outliers.
+Gérer les lignes contenant des valeurs aberrantes dans les colonnes pertinentes.
+Étudier les relations entre les variables.
+Sélectionner les variables présentant la plus grande variabilité.
+Visualiser les relations entre les variables via des outils graphiques comme le pairplot.
+Appliquer la technique appropriée pour normaliser ou standardiser les échelles des variables numériques.
+
+Étape 3 — Entraînement des modèles de clustering avec K-Means
+Déterminer la valeur optimale de k via la méthode du coude et silhouette.
+Visualiser la courbe d’inertie et silhouette pour appuyer le choix de k.
+Entraîner un modèle K-Means avec le nombre de clusters choisi.
+Ajouter une colonne Cluster au dataset indiquant le groupe assigné à chaque individu.
+Visualiser la répartition des observations par cluster et interpréter les résultats.
+
+Étape 4 — Analyse des clusters
+Calculer les moyennes des caractéristiques au sein de chaque cluster.
+Compter le nombre d’observations par groupe.
+Le cluster dont les moyennes des variables Glucose (>126), BMI (>30) et Diabetes Pedigree Function (>0,5) dépassent les seuils critiques peut être interprété comme à haut risque de diabète.
+Ajouter une colonne risk_category basée sur le numero de cluster (ex. : si 1 => risque élevé et 0 => faible).
+
+Étape 5 — Classification supervisée et évaluation des modèles
+Définir la variable cible y à partir de la colonne Cluster.
+Définir X à partir des variables sélectionnées.
+Diviser les données en ensemble d’entraînement et de test à l’aide de traintestsplit.
+Gérer le déséquilibre des classes avec des techniques de sur-échantillonnage ou sous-échantillonnage (RandomOverSampler, UnderSampler via imblearn).
+Entraîner et comparer au minimum 3 modèles de classification en utilisant les mêmes données d’entraînement et de test .
+Utiliser des métriques appropriées à la classification telles que : matrice de confusion, précision, rappel, F1-score.
+Utiliser des techniques comme GridSearchCV ou RandomizedSearchCV pour affiner les hyperparamètres des modèles et améliorer leurs performances.
+Comparer les performances des différents modèles.
+Choisir le modèle le plus performant.
+Construire un Pipeline intégrant le prétraitement des données et le modèle final, puis sauvegarder l’ensemble dans un fichier (.pkl ou .joblib).
+
+Étape 6 — Tracking des Expériences et Registre avec MLflow
+Démarrer et configurer un serveur de tracking MLflow et créer une expérience dédiée.
+Tracer le run de clustering : Paramètre k, inertie, score de silhouette, paramètres du scaler et artefacts (fichiers modèle K-Means et scaler .pkl/.joblib).
+Tracer chaque run de classification : Hyperparamètres explorés, métriques de performance (F_1-score, Rappel, Précision, Accuracy), matrice de confusion sous forme d'image en artefact.
+Traçabilité et Reproductibilité : Loguer la liste exacte des features utilisées, les versions des bibliothèques et la signature du dataset.
+Enregistrer la pipeline dans le MLflow Model Registry et effectuer la transition de la version validée vers le stage Production.
+
+Étape 7 — Application Web Métier & Orchestration du Pipeline
+Interface Praticien (Inférence) :
+Créer un formulaire interactif permettant la saisie des constantes cliniques d'un patient.
+Charger le modèle directement depuis le Model Registry de MLflow.
+Exposer un endpoint /predict qui charge le pipeline complet (Scaler + Modèle Prod MLflow).
+Afficher le niveau de risque prédit accompagné d'un indicateur visuel clair (Badge rouge pour Risque Élevé, Badge vert pour Risque Faible) et de conseils de suivi.
+DAG (Training/Retraining) : Extrait les données, applique le préprocessing, réentraîne, Classifieurs, met à jour le Model Registry(avec nouveau pipeline).
+Rédiger les Dockerfile et un fichier docker-compose.yml orchestrant les services (FastAPI, Streamlit, MLflow Server, Airflow).
