@@ -1,0 +1,4 @@
+Cluster,Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age
+0,2.49,105.92,66.99,22.93,101.68,28.37,0.42,26.85
+1,1.99,132.46,75.55,37.24,187.74,39.14,0.58,28.88
+2,7.65,136.36,77.99,30.77,186.7,32.74,0.46,47.21

@@ -1,0 +1,13 @@
+
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+imbalanced-learn
+mlflow
+psycopg[binary]
+fastapi
+uvicorn
+streamlit
+joblib

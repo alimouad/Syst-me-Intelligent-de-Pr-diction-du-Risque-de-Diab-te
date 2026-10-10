@@ -1,0 +1,17 @@
+Dataset shape: (768, 8)
+Classification features: 8
+Features:
+- Pregnancies
+- Glucose
+- BloodPressure
+- SkinThickness
+- Insulin
+- BMI
+- DiabetesPedigreeFunction
+- Age
+
+Target: risk_category
+Target definition: cluster-derived High Risk / Low Risk
+
+Train shape: (614, 8)
+Test shape: (154, 8)

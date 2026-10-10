@@ -1,0 +1,5 @@
+{
+    "model__C": 100,
+    "model__gamma": "scale",
+    "model__kernel": "rbf"
+}

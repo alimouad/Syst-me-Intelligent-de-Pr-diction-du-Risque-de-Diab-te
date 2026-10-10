@@ -1,0 +1,46 @@
+{
+  "dataframe_split": {
+    "columns": [
+      "Pregnancies",
+      "Glucose",
+      "BloodPressure",
+      "SkinThickness",
+      "Insulin",
+      "BMI",
+      "DiabetesPedigreeFunction",
+      "Age"
+    ],
+    "data": [
+      [
+        8.0,
+        124.0,
+        76.0,
+        24.0,
+        346.8999999999999,
+        28.7,
+        0.687,
+        52.0
+      ],
+      [
+        2.0,
+        83.0,
+        66.0,
+        23.0,
+        50.0,
+        32.2,
+        0.497,
+        22.0
+      ],
+      [
+        2.0,
+        100.0,
+        64.0,
+        23.0,
+        92.4,
+        29.7,
+        0.368,
+        21.0
+      ]
+    ]
+  }
+}
